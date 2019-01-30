@@ -94,24 +94,14 @@ public class GarageTest  {
 		v1.sortDuGarage();
 		v1.entreAuGarage(g1);
 
-		// La méthode imprimeGarages va écrire dans une chaine de caractères
+		// La méthode imprimeStationnements va écrire dans une chaine de caractères
 		ByteArrayOutputStream os = new ByteArrayOutputStream();
 		PrintStream ps = new PrintStream(os);
-		// On imprime dans os
+		
 		v1.imprimeStationnements(ps);
 		
 		// On récupère le résultat de l'impression
 		String output = os.toString("UTF8");
-
-		assertEquals( g1.toString() + " doit apparaître une fois",
-			1,
-			countSubstring(output, g1.toString())
-		);
-
-		assertEquals( g2.toString() + " doit apparaître une fois",
-			1,
-			countSubstring(output, g2.toString())
-		);
 
 		assertEquals("On doit imprimer trois stationnements",
 			3,
