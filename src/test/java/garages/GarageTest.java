@@ -103,6 +103,16 @@ public class GarageTest  {
 		// On récupère le résultat de l'impression
 		String output = os.toString("UTF8");
 
+		assertEquals( g1.toString() + " doit apparaître une fois",
+			1,
+			countSubstring(output, g1.toString())
+		);
+
+		assertEquals( g2.toString() + " doit apparaître une fois",
+			1,
+			countSubstring(output, g2.toString())
+		);
+		
 		assertEquals("On doit imprimer trois stationnements",
 			3,
 			countSubstring(output, "Stationnement")
