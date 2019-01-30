@@ -10,7 +10,7 @@ public class Voiture {
 
     public Voiture(String i) {
         if (null == i)
-            throw new IllegalArgumentException("immatriculation est null");
+            throw new IllegalArgumentException("Une voiture doit avoir une immatriculation");
         
         immatriculation = i;
     }
@@ -59,6 +59,13 @@ public class Voiture {
     
     /**
      * Pour chaque garage visité, imprime le nom de ce garage suivi de la liste des dates d'entrée / sortie dans ce garage
+     * <br>Exemple : <pre>
+     * Garage Castres: 
+     *		Stationnement{ entree=28/01/2019, sortie=28/01/2019 } 
+     *		Stationnement{ entree=28/01/2019, en cours } 
+     *  Garage Albi: 
+     *		Stationnement{ entree=28/01/2019, sortie=28/01/2019 }
+     *</pre> 
      * @param out l'endroit où imprimer (ex: System.out)
      */
     public void imprimeStationnements(PrintStream out) {
