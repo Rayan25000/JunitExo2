@@ -37,8 +37,10 @@ public class Voiture {
      * @throws java.lang.Exception si la voiture n'est pas dans un garage
      */
     public void sortDuGarage() throws Exception {
-        // TODO: Implémenter cette méthode
         throw new UnsupportedOperationException();
+        // TODO: Implémenter cette méthode
+	// Trouver le dernier stationnement de la voiture
+	// Terminer ce stationnement
     }
 
     /**
@@ -46,7 +48,7 @@ public class Voiture {
      */
     public Set<Garage> garagesVisites() {
         // TODO: Implémenter cette méthode
-        throw new UnsupportedOperationException();
+        throw new UnsupportedOperationException("Pas encore implémenté");
     }
 
     /**
@@ -54,7 +56,8 @@ public class Voiture {
      */
     public boolean estDansUnGarage() {
         // TODO: Implémenter cette méthode
-        throw new UnsupportedOperationException();
+        throw new UnsupportedOperationException("Pas encore implémenté");
+	// Vrai si le dernier stationnement est en cours
     }
     
     /**
@@ -70,7 +73,7 @@ public class Voiture {
      */
     public void imprimeStationnements(PrintStream out) {
         // TODO: Implémenter cette méthode
-        throw new UnsupportedOperationException();
+        throw new UnsupportedOperationException("Pas encore implémenté");
     }
 
 }
