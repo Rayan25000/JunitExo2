@@ -4,40 +4,41 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 
 public class Stationnement {
-    private final Voiture myCar;
-    private final Garage myGarage;
-    
-    private final Date entree = new Date(); // Aujourd'hui
-    private Date fin;
 
-    public Stationnement(Voiture v, Garage g) {
-        myCar = v;
-        myGarage = g;
-    }
+	private final Voiture myCar;
+	private final Garage myGarage;
 
-    public Voiture getCar() {
-        return myCar;
-    }
+	private final Date entree = new Date(); // Aujourd'hui
+	private Date fin;
 
-    public Garage getGarage() {
-        return myGarage;
-    }
+	public Stationnement(Voiture v, Garage g) {
+		myCar = v;
+		myGarage = g;
+	}
 
-    public Date getEntree() {
-        return entree;
-    }
+	public Voiture getCar() {
+		return myCar;
+	}
 
-    public Date getFin() {
-        return fin;
-    }
+	public Garage getGarage() {
+		return myGarage;
+	}
 
-    public void terminer() {
-        fin = new Date();
-    }
+	public Date getEntree() {
+		return entree;
+	}
 
-    public boolean estEnCours() {
-        return (fin == null);
-    }
+	public Date getFin() {
+		return fin;
+	}
+
+	public void terminer() {
+		fin = new Date();
+	}
+
+	public boolean estEnCours() {
+		return (fin == null);
+	}
 
 	@Override
 	public String toString() {
@@ -47,5 +48,5 @@ public class Stationnement {
 			estEnCours() ? "en cours" : "sortie=" + dateFormat.format(fin)
 		);
 	}
-    
+
 }

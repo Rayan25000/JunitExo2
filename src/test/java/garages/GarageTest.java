@@ -6,26 +6,27 @@ import org.junit.Before;
 import org.junit.Test;
 import static org.junit.Assert.*;
 
-public class GarageTest  {
+public class GarageTest {
+
 	private Garage g1, g2;
 	private Voiture v1;
-		
+
 	@Before
 	public void setUp() throws Exception {
 		v1 = new Voiture("123 XX 456");
 		g1 = new Garage("ISIS Castres");
-		g2 = new Garage("Université Champollion Albi");
+		g2 = new Garage("Universite Champollion Albi");
 	}
-	
+
 	@Test
 	public void testInitialisationVoiture() {
 		// Au début, la voiture n'est pas dans un garage
 		assertFalse("Une voiture neuve ne doit pas être dans un garage",
-			v1.estDansUnGarage());		
+			v1.estDansUnGarage());
 		assertTrue("L'ensemble des garages visités par une voiture neuve doit être vide",
 			v1.garagesVisites().isEmpty());
 	}
-	
+
 	@Test
 	public void testEntreeGarage() throws Exception {
 		// On fait entrer la voiture au garage g1
@@ -34,10 +35,10 @@ public class GarageTest  {
 		assertTrue("L'entrée au garage n'a pas fonctionné",
 			v1.estDansUnGarage());
 		// g1 fait partie des garages visités par la voiture
-		assertTrue( "Le nouveau garage visité n'est pas correctement enregistré",
-			v1.garagesVisites().contains(g1));	
+		assertTrue("Le nouveau garage visité n'est pas correctement enregistré",
+			v1.garagesVisites().contains(g1));
 	}
-	
+
 	@Test
 	public void testSortieGarage() throws Exception {
 		v1.entreAuGarage(g1);
@@ -47,9 +48,9 @@ public class GarageTest  {
 			v1.estDansUnGarage());
 		// g1 fait partie des garages visités par la voiture
 		assertTrue("Le nouveau garage visité n'est pas correctement enregistré",
-			v1.garagesVisites().contains(g1));	
+			v1.garagesVisites().contains(g1));
 	}
-	
+
 	@Test
 	public void testDoubleSortie() throws Exception {
 		v1.entreAuGarage(g1);
@@ -62,7 +63,7 @@ public class GarageTest  {
 			// Si on arrive ici, il y a eu une exception, c'est ce qui est attendu
 		}
 	}
-	
+
 	@Test
 	public void testDoubleEntree() throws Exception {
 		v1.entreAuGarage(g1);
@@ -76,15 +77,14 @@ public class GarageTest  {
 	}
 
 	/**
-	 * Exemple de test qui vérifie un format d'impression correct.<br>`
-	 * La méthode "imprimeStationnements" est conçue pour être testable :<br>
-	 * Elle prend un paramètre "PrintStream" qui indique où on doit imprimer
-	 * (Injection de dépendance).<br>
-	 * Dans le test, on imprime dans une chaîne de caractères au lieu d'imprimer
-	 * directement dans la console (System.out)<br>
-	 * On peut ensuite vérifier que le contenu de la chaîne générée est conforme au
-	 * résultat attendu.
-	 * @throws Exception 
+	 * Exemple de test qui vérifie un format d'impression correct.<br>` La méthode "imprimeStationnements" est
+	 * conçue pour être testable :<br>
+	 * Elle prend un paramètre "PrintStream" qui indique où on doit imprimer (Injection de dépendance).<br>
+	 * Dans le test, on imprime dans une chaîne de caractères au lieu d'imprimer directement dans la console
+	 * (System.out)<br>
+	 * On peut ensuite vérifier que le contenu de la chaîne générée est conforme au résultat attendu.
+	 *
+	 * @throws Exception
 	 */
 	@Test
 	public void testCorrectPrintFormat() throws Exception {
@@ -97,22 +97,22 @@ public class GarageTest  {
 		// La méthode imprimeStationnements va écrire dans une chaine de caractères
 		ByteArrayOutputStream os = new ByteArrayOutputStream();
 		PrintStream ps = new PrintStream(os);
-		
+
 		v1.imprimeStationnements(ps);
-		
+
 		// On récupère le résultat de l'impression
 		String output = os.toString("UTF8");
 
-		assertEquals( g1.toString() + " doit apparaître une fois",
+		assertEquals(g1.toString() + " doit apparaître une fois",
 			1,
 			countSubstring(output, g1.toString())
 		);
 
-		assertEquals( g2.toString() + " doit apparaître une fois",
+		assertEquals(g2.toString() + " doit apparaître une fois",
 			1,
 			countSubstring(output, g2.toString())
 		);
-		
+
 		assertEquals("On doit imprimer trois stationnements",
 			3,
 			countSubstring(output, "Stationnement")
@@ -125,8 +125,8 @@ public class GarageTest  {
 	}
 
 	/**
-	 * Une méthode utilitaire pour le test ci-dessus
-	 * Compter le nombre d'occurrences d'une sous-chaîne dans une chaîne
+	 * Une méthode utilitaire pour le test ci-dessus Compter le nombre d'occurrences d'une sous-chaîne dans une
+	 * chaîne
 	 *
 	 * @param string String to look for substring in.
 	 * @param substring Sub-string to look for.
@@ -143,5 +143,5 @@ public class GarageTest  {
 
 		return count;
 	}
-	
+
 }
