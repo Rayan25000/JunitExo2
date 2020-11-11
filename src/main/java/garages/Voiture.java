@@ -21,7 +21,8 @@ public class Voiture {
 	}
 
 	/**
-	 * Fait rentrer la voiture au garage Précondition : la voiture ne doit pas être déjà dans un garage
+	 * Fait rentrer la voiture au garage 
+         * Précondition : la voiture ne doit pas être déjà dans un garage
 	 *
 	 * @param g le garage où la voiture va stationner
 	 * @throws java.lang.Exception Si déjà dans un garage
@@ -33,7 +34,8 @@ public class Voiture {
 	}
 
 	/**
-	 * Fait sortir la voiture du garage Précondition : la voiture doit être dans un garage
+	 * Fait sortir la voiture du garage 
+         * Précondition : la voiture doit être dans un garage
 	 *
 	 * @throws java.lang.Exception si la voiture n'est pas dans un garage
 	 */
