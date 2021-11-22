@@ -29,6 +29,7 @@ public class Voiture {
 	 */
 	public void entreAuGarage(Garage g) throws Exception {
 		// Et si la voiture est déjà dans un garage ?
+                    
 		Stationnement s = new Stationnement(this, g);
 		myStationnements.add(s);
 	}

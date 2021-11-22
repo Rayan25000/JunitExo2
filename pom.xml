@@ -7,32 +7,23 @@
     <packaging>jar</packaging>
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-        <java.version>8</java.version>
+        <maven.compiler.source>8</maven.compiler.source>
+        <maven.compiler.target>8</maven.compiler.target>
+            <!-- On configure le plugin permettant d'exécuter directement le programme avec maven -->            
+            <!-- On pourra exécuter le programme avec : 'mvn exec:java' -->
+        <exec.mainClass>representation.Main</exec.mainClass>
+            <!-- On configure le plugin permettant de packager le programme et toutes ses dépendances -->            
+            <!-- On pourra exécuter le programme sans maven avec : 'java -jar using-guava-1.0-jar-with-dependencies.jar' -->            
+        <assembly.mainClass>representation.Main</assembly.mainClass>                 
     </properties>    
         
     <build>
         
         <plugins>
             <plugin>
-                <artifactId>maven-compiler-plugin</artifactId>
-                <version>3.8.1</version>
-                <configuration>
-                    <source>${java.version}</source>
-                    <target>${java.version}</target>
-                </configuration>
-            </plugin>
-
-           
-            <plugin>
                 <artifactId>maven-surefire-plugin</artifactId>
                 <version>2.22.2</version>
             </plugin>
-            
-            <plugin>
-                <artifactId>maven-failsafe-plugin</artifactId>
-                <version>2.22.2</version>
-            </plugin>
-                       
             <plugin>
                 <groupId>org.jacoco</groupId>
                 <artifactId>jacoco-maven-plugin</artifactId>

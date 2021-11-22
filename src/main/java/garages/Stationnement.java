@@ -33,7 +33,8 @@ public class Stationnement {
 	}
 
 	public void terminer() {
-		fin = new Date();
+                // On enregistre
+		fin = new Date(); // Date du jour
 	}
 
 	public boolean estEnCours() {
