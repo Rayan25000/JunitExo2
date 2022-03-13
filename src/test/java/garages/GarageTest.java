@@ -22,47 +22,59 @@ public class GarageTest {
 	}
 
 	@Test
-	public void testInitialisationVoiture() {
-		// Au début, la voiture n'est pas dans un garage
+	public void lesVoituresSontBienInitialisees() {
+		// Given: une voiture après initialisation
+		// Then: la voiture n'est pas dans un garage
 		assertFalse(v1.estDansUnGarage());
+		// Then: la voiture n'a visité aucun garage
 		assertTrue(v1.garagesVisites().isEmpty());
 	}
 
 	@Test
-	public void testEntreeGarage() throws Exception {
-		// On fait entrer la voiture au garage g1
+	public void entrerAuGarageChangeGarageVisites() throws Exception {
+		// Given: une voiture après initialisation
+		// When: On fait entrer la voiture au garage g1
 		v1.entreAuGarage(g1);
-		// Elle doit être dans un garage
+		// Then: la voiture doit être dans un garage
 		assertTrue(v1.estDansUnGarage());
-		// g1 fait partie des garages visités par la voiture
+		// Then: g1 fait partie des garages visités par la voiture
 		assertTrue(v1.garagesVisites().contains(g1));
 	}
 
 	@Test
-	public void testSortieGarage() throws Exception {
+	public void sortirDuGarageChangeGarageVisites() throws Exception {
+		// Given: une voiture après initialisation
+		// When: On fait entrer puis sortir la voiture du garage g1
 		v1.entreAuGarage(g1);
 		v1.sortDuGarage();
-		// Elle n'est plus dans un garage
+		// Then: la voiture n'est plus dans un garage
 		assertFalse(v1.estDansUnGarage());
-		// g1 fait partie des garages visités par la voiture
+		// Then: g1 fait partie des garages visités par la voiture
 		assertTrue(v1.garagesVisites().contains(g1));
 	}
 
 	@Test
-	public void testDoubleSortie() throws Exception {
+	public void pasDeDoubleSortie() throws Exception {
+		// Given: une voiture après initialisation
+		// When: On la fait entrer puis sortir la voiture du garage g1
 		v1.entreAuGarage(g1);
 		v1.sortDuGarage(); // Ici il ne doit pas y avoir d'exception
 		try {
+			// When: on essaie de la faire sortir à nouveau
 			v1.sortDuGarage(); // Que doit-il se passer ?
+			// Then: on doit avoir une exception
 			// Si on arrive ici, il n'y a pas eu d'exception, échec
 			fail();
 		} catch (Exception e) {
+
 			// Si on arrive ici, il y a eu une exception, c'est ce qui est attendu
 		}
 	}
 
 	@Test
-	public void testDoubleEntree() throws Exception {
+	public void pasDeDoubleEntree() throws Exception {
+		// Given: une voiture après initialisation
+		// When: On fait entrer la voiture au garage g1
 		v1.entreAuGarage(g1);
 		try {
 			v1.entreAuGarage(g2); // Que doit-il se passer ?
@@ -95,15 +107,16 @@ public class GarageTest {
 		// La méthode imprimeGarages va écrire dans une chaine de caractères
 		ByteArrayOutputStream os = new ByteArrayOutputStream();
 		PrintStream ps = new PrintStream(os);
-		// On imprime dans os
+		// On imprime dans ps
 		v1.imprimeStationnements(ps);
 		
 		// On récupère le résultat de l'impression
 		String output = os.toString("UTF8");
 
+		// Le garage g1 doit apparaître une fois
 		assertEquals(1, countSubstring(output, g1.toString()),
                          g1.toString() + " doit apparaître une fois");
-
+		// Le garage g2 doit apparaître une fois
 		assertEquals(1,	countSubstring(output, g2.toString()),
                     g2.toString() + " doit apparaître une fois");
 
