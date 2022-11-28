@@ -52,7 +52,11 @@ public class Voiture {
 	 */
 	public Set<Garage> garagesVisites() {
 		// TODO: Implémenter cette méthode
-		throw new UnsupportedOperationException("Pas encore implémenté");
+		Set<Garage> garages = new HashSet<>();
+		for (Stationnement myStationnement : myStationnements) {
+			garages.add(myStationnement.getGarage());
+		}
+		return garages;
 	}
 
 	/**
@@ -60,7 +64,12 @@ public class Voiture {
 	 */
 	public boolean estDansUnGarage() {
 		// TODO: Implémenter cette méthode
-		throw new UnsupportedOperationException("Pas encore implémenté");
+		if(myStationnements.size() != 0){
+			if(myStationnements.get(myStationnements.size() - 1) != null)
+				return true;
+		}
+		return false;
+
 		// Vrai si le dernier stationnement est en cours
 	}
 
