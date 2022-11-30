@@ -29,9 +29,12 @@ public class Voiture {
 	 */
 	public void entreAuGarage(Garage g) throws Exception {
 		// Et si la voiture est déjà dans un garage ?
-
-		Stationnement s = new Stationnement(this, g);
-		myStationnements.add(s);
+		if(myStationnements.size() > 0){
+			throw new IllegalArgumentException("La voiture est déjà dans un garage");
+		} else {
+			Stationnement s = new Stationnement(this, g);
+			myStationnements.add(s);
+		}
 	}
 
 	/**
@@ -41,10 +44,22 @@ public class Voiture {
 	 * @throws java.lang.Exception si la voiture n'est pas dans un garage
 	 */
 	public void sortDuGarage() throws Exception {
-		throw new UnsupportedOperationException("Pas encore implémenté");
 		// TODO: Implémenter cette méthode
 		// Trouver le dernier stationnement de la voiture
 		// Terminer ce stationnement
+			if(myStationnements.size() > 0){
+				if(myStationnements.get(myStationnements.size()-1).getFin() == null){
+					Stationnement statio = myStationnements.get(myStationnements.size() - 1);
+					statio.terminer();
+					myStationnements.remove(myStationnements.size()-1);
+				} else {
+					throw new IllegalArgumentException("La voiture est déjà sortie");
+				}
+			} else {
+				throw new IllegalArgumentException("La voiture n'est pas dans un garage");
+			}
+
+
 	}
 
 	/**
@@ -64,14 +79,15 @@ public class Voiture {
 	 */
 	public boolean estDansUnGarage() {
 		// TODO: Implémenter cette méthode
-		if(myStationnements.size() != 0){
-			if(myStationnements.get(myStationnements.size() - 1) != null)
+		if(myStationnements.size() > 0){
+			if(myStationnements.get(myStationnements.size() - 1).estEnCours())
 				return true;
 		}
 		return false;
 
 		// Vrai si le dernier stationnement est en cours
 	}
+
 
 	/**
 	 * Pour chaque garage visité, imprime le nom de ce garage suivi de la liste des
@@ -91,7 +107,13 @@ public class Voiture {
 	 */
 	public void imprimeStationnements(PrintStream out) {
 		// TODO: Implémenter cette méthode
-		throw new UnsupportedOperationException("Pas encore implémenté");
+		for (Stationnement myStationnement : myStationnements) {
+			out.println(myStationnement.getGarage().toString());
+			out.println(myStationnement.toString());
+			System.out.println(myStationnement.getGarage().toString());
+			System.out.println(myStationnement.toString());
+
+		}
 	}
 
 }
