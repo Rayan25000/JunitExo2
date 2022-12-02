@@ -29,12 +29,12 @@ public class Voiture {
 	 */
 	public void entreAuGarage(Garage g) throws Exception {
 		// Et si la voiture est déjà dans un garage ?
-		if(myStationnements.size() > 0){
-			throw new IllegalArgumentException("La voiture est déjà dans un garage");
-		} else {
-			Stationnement s = new Stationnement(this, g);
-			myStationnements.add(s);
+		if(this.estDansUnGarage()) {
+			throw new UnsupportedOperationException("La voiture est déjà dans un garage");
 		}
+
+		Stationnement s = new Stationnement(this, g);
+		myStationnements.add(s);
 	}
 
 	/**
@@ -47,17 +47,11 @@ public class Voiture {
 		// TODO: Implémenter cette méthode
 		// Trouver le dernier stationnement de la voiture
 		// Terminer ce stationnement
-			if(myStationnements.size() > 0){
-				if(myStationnements.get(myStationnements.size()-1).getFin() == null){
-					Stationnement statio = myStationnements.get(myStationnements.size() - 1);
-					statio.terminer();
-					myStationnements.remove(myStationnements.size()-1);
-				} else {
-					throw new IllegalArgumentException("La voiture est déjà sortie");
-				}
-			} else {
-				throw new IllegalArgumentException("La voiture n'est pas dans un garage");
-			}
+		if(!this.estDansUnGarage()) {
+			throw new UnsupportedOperationException("La voiture n'est pas dans un garage");
+		}
+
+		this.myStationnements.get(this.myStationnements.size() - 1).terminer();
 
 
 	}
@@ -107,13 +101,17 @@ public class Voiture {
 	 */
 	public void imprimeStationnements(PrintStream out) {
 		// TODO: Implémenter cette méthode
-		for (Stationnement myStationnement : myStationnements) {
-			out.println(myStationnement.getGarage().toString());
-			out.println(myStationnement.toString());
-			System.out.println(myStationnement.getGarage().toString());
-			System.out.println(myStationnement.toString());
-
+		String impression = "";
+		for(Garage g : this.garagesVisites()) {
+			impression += "\n" + g.toString();
+			for(Stationnement s : this.myStationnements) {
+				if (s.getGarage() == g) {
+					impression += "\n    " + s.toString();
+				}
+			}
 		}
+
+		out.println(impression);
 	}
 
 }
